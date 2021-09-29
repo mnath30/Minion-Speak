@@ -10,12 +10,16 @@ function CreateURL(text){
   var textURL=`${URL2}?text=${text}`;
   return textURL;
 }
+function errorHandler(error){
+  alert("There is something wrong with the server.Please try again later");
+}
 
 //function to call the API
 function display(){
   fetch(CreateURL(inputText.value))
   .then(response=>response.json())
-  .then(json=>{result.innerText=json.contents.translated});
+  .then(json=>{result.innerText=json.contents.translated})
+  .catch(errorHandler);
 
 }
 
